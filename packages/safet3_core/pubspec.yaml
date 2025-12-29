@@ -5,3 +5,12 @@ publish_to: 'none'
 environment:
   sdk: ^3.10.4
 resolution: workspace
+
+dependencies:
+  json_annotation: ^4.9.0
+  equatable: ^2.0.7 # For comparing objects easily (test friendly)
+  uuid: ^4.5.2 # For generating unique IDs
+
+dev_dependencies:
+  build_runner: ^2.10.4
+  json_serializable: ^6.11.3

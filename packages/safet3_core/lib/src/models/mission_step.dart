@@ -6,7 +6,7 @@ part 'mission_step.g.dart';
 
 /// Base class for any step within a Mission.
 /// Uses Dart 3 sealed class pattern for exhaustive switch handling.
-@JsonSerializable(explicitToJson: true)
+// @JsonSerializable(explicitToJson: true) removed to prevent instantiation of partial class
 sealed class MissionStep extends Equatable {
   /// Unique identifier for this step.
   final String id;

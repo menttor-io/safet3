@@ -6,19 +6,6 @@ part of 'mission_step.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-MissionStep _$MissionStepFromJson(Map<String, dynamic> json) => MissionStep(
-  id: json['id'] as String,
-  name: json['name'] as String,
-  type: json['type'] as String,
-);
-
-Map<String, dynamic> _$MissionStepToJson(MissionStep instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'type': instance.type,
-    };
-
 HttpStep _$HttpStepFromJson(Map<String, dynamic> json) => HttpStep(
   id: json['id'] as String,
   name: json['name'] as String,

@@ -1,0 +1,15 @@
+id: "mission_001"
+name: "Test Google API"
+variables:
+  baseUrl: "https://google.com"
+steps:
+  - id: "step_1"
+    name: "Check Homepage"
+    type: "http"
+    method: "GET"
+    url: "{{baseUrl}}" # On testera l'interpolation plus tard
+  
+  - id: "step_2"
+    name: "Pause a bit"
+    type: "wait"
+    durationMs: 500

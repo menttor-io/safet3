@@ -1,15 +1,27 @@
-id: "mission_001"
-name: "Test Google API"
+id: "mission_real_world"
+name: "Test ReqRes API"
 variables:
-  baseUrl: "https://google.com"
+  baseUrl: "https://reqres.in/api"
+
 steps:
-  - id: "step_1"
-    name: "Check Homepage"
+  - id: "get_users"
+    name: "Get Users List"
     type: "http"
     method: "GET"
-    url: "{{baseUrl}}" # On testera l'interpolation plus tard
-  
-  - id: "step_2"
-    name: "Pause a bit"
+    url: "{{baseUrl}}/users?page=2"
+    assertSuccess: true
+
+  - id: "pause"
+    name: "Wait a second"
     type: "wait"
-    durationMs: 500
+    durationMs: 1000
+
+  - id: "create_user"
+    name: "Create User"
+    type: "http"
+    method: "POST"
+    url: "{{baseUrl}}/users"
+    body:
+      name: "Morpheus"
+      job: "Leader"
+    assertSuccess: true

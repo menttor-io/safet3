@@ -1,0 +1,5 @@
+name: safet3_cli
+description: Command-line interface for Safet3.
+environment:
+  sdk: '^3.10.4'
+resolution: workspace

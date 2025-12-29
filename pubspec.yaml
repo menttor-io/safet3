@@ -1,0 +1,33 @@
+name: safet3_workspace
+description: The safet3 monorepo. Open-source API testing & observability platform.
+environment:
+  sdk: ^3.10.4 # Target Dart SDK version
+
+# Workspace definition (New in Dart 3.5+)
+workspace:
+  - packages/safet3_core
+  - packages/safet3_engine
+  - packages/safet3_cli
+  - packages/safet3_server
+  - packages/safet3_web
+
+dev_dependencies:
+  melos: ^7.3.0
+  lints: ^6.0.0
+  test: ^1.28.0
+
+melos:
+  scripts:
+    analyze:
+      run: dart analyze .
+      description: Run static analysis on all packages.
+
+    test:
+      run: dart test
+      exec:
+        concurrency: 1
+      description: Run unit tests in all packages.
+
+    format:
+      run: dart format .
+      description: Format all code.

@@ -1,0 +1,5 @@
+name: safet3_web
+description: Safet3 web.
+environment:
+  sdk: '^3.10.4'
+resolution: workspace

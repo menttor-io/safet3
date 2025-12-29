@@ -1,0 +1,5 @@
+name: safet3_server
+description: Safet3 server.
+environment:
+  sdk: '^3.10.4'
+resolution: workspace

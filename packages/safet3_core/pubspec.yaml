@@ -1,0 +1,7 @@
+name: safet3_core
+description: Shared models and protocols for Safet3.
+version: 0.1.0
+publish_to: 'none'
+environment:
+  sdk: ^3.10.4
+resolution: workspace

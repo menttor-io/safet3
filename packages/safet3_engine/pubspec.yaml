@@ -1,0 +1,5 @@
+name: safet3_engine
+description: Safet3 engine.
+environment:
+  sdk: '^3.10.4'
+resolution: workspace

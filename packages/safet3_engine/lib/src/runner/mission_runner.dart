@@ -48,9 +48,21 @@ class MissionRunner {
     
     final headers = <String, dynamic>{};
 
-    final mergedHeaders = <String, dynamic>{
-      'User-Agent': 'Safet3Runtime/1.0', // <-- L'identité de ton outil
-      'Accept': 'application/json',
+    // Simulation d'un vrai Chrome sur Windows
+    final realBrowserHeaders = <String, dynamic>{
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Connection': 'keep-alive',
+      'Upgrade-Insecure-Requests': '1',
+      'Sec-Fetch-Dest': 'document',
+      'Sec-Fetch-Mode': 'navigate',
+      'Sec-Fetch-Site': 'none',
+      'Sec-Fetch-User': '?1',
+      'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+      'sec-ch-ua-mobile': '?0',
+      'sec-ch-ua-platform': '"Windows"',
     };
 
     step.headers?.forEach((k, v) {
@@ -58,13 +70,19 @@ class MissionRunner {
     });
 
     if (headers.isNotEmpty) {
-      mergedHeaders.addAll(headers);
+      realBrowserHeaders.addAll(headers);
     }
+
+    // Interpolation des valeurs
+    final finalHeaders = <String, dynamic>{};
+    realBrowserHeaders.forEach((k, v) {
+      finalHeaders[k] = context.interpolate(v.toString());
+    });
 
     // 2. Préparation de la requête
     final options = Options(
       method: step.method.toString().split('.').last.toUpperCase(), // HttpMethod.get -> GET
-      headers: mergedHeaders,
+      headers: finalHeaders,
       validateStatus: (status) => true, // On gère les erreurs nous-mêmes
     );
 

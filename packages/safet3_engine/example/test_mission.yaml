@@ -1,27 +1,13 @@
-id: "mission_real_world"
-name: "Test ReqRes API"
+id: "direct_browser_fetch"
+name: "Direct API Fetch via Browser"
 variables:
-  baseUrl: "https://reqres.in/api"
+  # L'URL finale qui est protégée
+  baseUrl: "https://reqres.in"
 
 steps:
-  - id: "get_users"
-    name: "Get Users List"
-    type: "http"
-    method: "GET"
-    url: "{{baseUrl}}/users?page=2"
-    assertSuccess: true
-
-  - id: "pause"
-    name: "Wait a second"
-    type: "wait"
-    durationMs: 1000
-
-  - id: "create_user"
-    name: "Create User"
-    type: "http"
-    method: "POST"
-    url: "{{baseUrl}}/users"
-    body:
-      name: "Morpheus"
-      job: "Leader"
-    assertSuccess: true
+  - id: "fetch_data"
+    name: "Get API Data (Human Validation)"
+    type: "browser"
+    url: "{{baseUrl}}"
+    headless: false        # On voit la fenêtre pour valider manuellement
+    waitForSelector: "pre" # Astuce : Chrome met le JSON dans une balise <pre>

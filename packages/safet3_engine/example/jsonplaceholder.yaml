@@ -1,0 +1,49 @@
+id: "json_placeholder_test"
+name: "Test API Chaining"
+variables:
+  baseUrl: "https://jsonplaceholder.typicode.com"
+
+steps:
+  # 1. On récupère la liste (C'est un Array JSON [])
+  - id: "get_users"
+    name: "Get All Users"
+    type: "http"
+    method: "GET"
+    url: "{{baseUrl}}/users"
+    extract:
+      # On prend le premier utilisateur de la liste
+      - source: "[0].id"
+        target: "userId"
+      - source: "[0].name"
+        target: "userName"
+      - source: "[0].email"
+        target: "userEmail"
+
+  # 2. On affiche ce qu'on a trouvé (pour le fun via un log console simulé par un Step Wait)
+  - id: "pause"
+    name: "Processing User: {{userName}}"
+    type: "wait"
+    durationMs: 500
+
+  # 3. On utilise l'ID extrait pour récupérer ses Todos
+  - id: "get_todos"
+    name: "Get Todos for ID {{userId}}"
+    type: "http"
+    method: "GET"
+    url: "{{baseUrl}}/todos?userId={{userId}}"
+    assertSuccess: true
+    extract:
+      - source: "[0].title"
+        target: "firstTodoTitle"
+
+  # 4. On crée un Post avec ses infos
+  - id: "create_post"
+    name: "Create Post for {{userEmail}}"
+    type: "http"
+    method: "POST"
+    url: "{{baseUrl}}/posts"
+    body:
+      title: "Automated Test by Safet3"
+      body: "Verification of {{firstTodoTitle}}"
+      userId: "{{userId}}"
+    assertSuccess: true

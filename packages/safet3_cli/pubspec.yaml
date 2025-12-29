@@ -3,3 +3,13 @@ description: Command-line interface for Safet3.
 environment:
   sdk: '^3.10.4'
 resolution: workspace
+
+dependencies:
+  safet3_core:
+    path: ../safet3_core
+  safet3_engine:
+    path: ../safet3_engine
+
+  args: ^2.7.0           # For parsing arguments
+  mason_logger: ^0.3.3  # For jolly logs (colors, loading spinners)
+  io: ^1.0.5
